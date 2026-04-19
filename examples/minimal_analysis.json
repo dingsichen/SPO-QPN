@@ -1,0 +1,12 @@
+{
+  "epsilon": 0.0,
+  "tau_label": "tau",
+  "target_observations": [
+    {
+      "sequence": [
+        "req",
+        "done"
+      ]
+    }
+  ]
+}

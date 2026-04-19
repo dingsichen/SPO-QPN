@@ -1,0 +1,175 @@
+{
+  "control_places": [
+    "p0",
+    "p1",
+    "p2_secret",
+    "p2_public",
+    "p_finish"
+  ],
+  "quantum_registers": [
+    {
+      "name": "qA",
+      "dimension": 2
+    }
+  ],
+  "initial_marking": [
+    "p0"
+  ],
+  "initial_state": {
+    "type": "density_matrix",
+    "data": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ]
+  },
+  "attacker_interface": [
+    "qA"
+  ],
+  "secret_predicate": {
+    "type": "event_occurrence",
+    "transitions": [
+      "t_secret"
+    ]
+  },
+  "observable_alphabet": [
+    "req",
+    "done"
+  ],
+  "transitions": [
+    {
+      "name": "t_req",
+      "pre": [
+        "p0"
+      ],
+      "post": [
+        "p1"
+      ],
+      "access": [],
+      "branches": [
+        {
+          "name": "main",
+          "label": "req",
+          "kraus": [
+            [
+              [
+                1
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "t_public",
+      "pre": [
+        "p1"
+      ],
+      "post": [
+        "p2_public"
+      ],
+      "access": [
+        "qA"
+      ],
+      "branches": [
+        {
+          "name": "main",
+          "label": "tau",
+          "kraus": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "t_secret",
+      "pre": [
+        "p1"
+      ],
+      "post": [
+        "p2_secret"
+      ],
+      "access": [
+        "qA"
+      ],
+      "branches": [
+        {
+          "name": "main",
+          "label": "tau",
+          "kraus": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "t_done_public",
+      "pre": [
+        "p2_public"
+      ],
+      "post": [
+        "p_finish"
+      ],
+      "access": [],
+      "branches": [
+        {
+          "name": "main",
+          "label": "done",
+          "kraus": [
+            [
+              [
+                1
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "t_done_secret",
+      "pre": [
+        "p2_secret"
+      ],
+      "post": [
+        "p_finish"
+      ],
+      "access": [],
+      "branches": [
+        {
+          "name": "main",
+          "label": "done",
+          "kraus": [
+            [
+              [
+                1
+              ]
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

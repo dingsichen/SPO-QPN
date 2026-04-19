@@ -1,0 +1,4 @@
+# Core verification code uses only the Python standard library.
+# These packages are required for the figure-generation scripts in examples/.
+numpy
+matplotlib
